@@ -1,6 +1,6 @@
 #📌 Task Manager CLI — Java | Proyecto de Portfolio
 
-![Java](https://img.shields.io/badge/Java-17-orange)
+![Java](https://img.shields.io/badge/Java-21-orange)
 ![License](https://img.shields.io/badge/License-GPL--3.0-blue)
 ![Status](https://img.shields.io/badge/Status-In%20Progress-yellow)
 
