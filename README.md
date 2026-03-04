@@ -1,4 +1,8 @@
-# 📝 Task Manager CLI - Java
+#📌 Task Manager CLI — Java | Proyecto de Portfolio
+
+![Java](https://img.shields.io/badge/Java-17-orange)
+![License](https://img.shields.io/badge/License-GPL--3.0-blue)
+![Status](https://img.shields.io/badge/Status-In%20Progress-yellow)
 
 Aplicación de gestión de tareas en consola desarrollada en Java para practicar Programación Orientada a Objetos (OOP), estructuras de datos y separación de responsabilidades.
 
