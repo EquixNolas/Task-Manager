@@ -1,4 +1,5 @@
-package model;
+package main;
+
 
 import java.util.Scanner;
 
@@ -56,8 +57,6 @@ public class Main {
 				break;
 			case 5:
 				System.out.println("Hasta la Próxima...");
-				System.out.println("Press Enter to Continue");
-				input.nextLine();
 				input.close();
 				return;
 			default:
