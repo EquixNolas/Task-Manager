@@ -6,8 +6,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
-public class AbstractDaoImpl {
-
+public abstract class AbstractDaoImpl {
 	protected EntityManagerFactory emf;
 	protected EntityManager em;
 	protected EntityTransaction tx;
