@@ -1,4 +1,4 @@
-# Base de Datos
+# 📇 Base de Datos
   ### Entidades Principales
   * #### Usuario
   > Representa a las personas que emplean la aplicacón.
