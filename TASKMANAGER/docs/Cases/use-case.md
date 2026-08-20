@@ -11,5 +11,5 @@
   * Eliminar Usuarios.
 
 <p align="center">
-  <img src="Cases/Use-Cases.png" width="600" alt="Diagrama de casos de uso.">
+  <img src="Use-Cases.png" width="600" alt="Diagrama de casos de uso.">
 </p>
