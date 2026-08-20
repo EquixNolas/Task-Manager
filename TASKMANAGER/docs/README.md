@@ -2,14 +2,14 @@
 Sección de documentación técnica y funcional del proyecto TaskManager.
 
 #  Índice
-1. [Requisitos](#Requisitos)
-2. Análisis.
+1. [Requisitos.](#Requisitos)
+2. [Análisis.](#Análisis)
 3. Diseño.
 4. Base de Datos.
 5. Instalación.
 6. Manual de usuario.
 
-## Requisitos
+# Requisitos
   ### 01.- Requisitos Funcionales:
   
   * #### RF-01  Gestión de usuarios:   
@@ -44,10 +44,10 @@ Sección de documentación técnica y funcional del proyecto TaskManager.
   * #### RNF-04  Mantenibilidad:
   >El código debe estar organizado separando responsabilidades entre capas.
 
-## Análisis
+# Análisis
   
   ### Administrador del proyecto
-  Es el encargado de administrar el proyecto, titulo, tareas, fechas de entrega y sobre todo usuarios.
+  >Es el encargado de administrar el proyecto, titulo, tareas, fechas de entrega y sobre todo usuarios.
   Puede:
   * Gestionar Usuarios.
   * Gestionar Proyectos.
@@ -55,8 +55,74 @@ Sección de documentación técnica y funcional del proyecto TaskManager.
   * Cancelar / Eliminar el proyecto.
   * Consultar estado de progreso del proyecto.
   * Eliminar Usuarios.
-![Casos-de-uso](TASKMANAGER/docs/uml/Use-Cases.png)
-## Diseño
-## Base de Datos
-## Instalación
-## Manual de usuario.
+
+<p align="center">
+  <img src="uml/Use-Cases.png" width="600" alt="Diagrama de casos de uso.">
+</p>
+
+# Diseño
+  ### Diagrama de Clases
+  >El siguiente diagrama representa las principales entidades del dominio y las relaciones existentes entre ellas.
+
+<p align="center">
+  <img src="uml/UML-Diagram.png" width="600" alt="Diagrama de clases.">
+</p>
+
+  ### Diagrama de Secuencia: Crear Tarea
+  1. El usuario Solicita crear una  tarea.
+  2. El controller recibe la solicitud.
+  3. El Service valida los datos.
+  4. Se comprueba que la tarea no exista de antes.
+  5. El Dao/Repository persiste la reserva.
+  6. El sistema devuelve el resultado.
+> ![secuencia](uml/Secuence-diagram.png)
+
+  ### Arquitectura por capas
+  * #### Controller
+  > Gestiona las solicitudes recibidas y delega las operaciones necesarias en la capa de servicios. También recibe el resultado final.
+  * #### Service
+  > Contiene la lógica de negocio y las validaciones del sistema.
+  * #### DAO / Repository
+  > Gestiona el acceso a los datos utilizando JPA.
+  * #### Entity
+  > Representa las entidades del dominio y su relación con la base de datos.
+
+<p align="center">
+  <img src="architecture/layered-diagram2.jpg" width="800" alt="arquitectura por capas.">
+</p>
+
+# Base de Datos
+  ### Entidades Principales
+  * #### Usuario
+  > Representa a las personas que emplean la aplicacón.
+  * #### Proyectos
+  >Representa los proyectos existentes para cada usuario.
+  * #### Tareas
+  >Representa las tareas asignadas a un proyecto.
+  * #### Etiquetas
+  > Representa las etiquetas asignadas a diferentes tateas.
+  * #### Tarea Etiqueta
+  > Representa la relación entre una tarea y una etiqueta.
+
+<p align="center">
+  <img src="database/Entity-Relationship-Diagram.png" width="800" alt="arquitectura por capas.">
+</p>
+
+  ### Relaciones
+  >1. Un Usuario puede tener varios proyectos.
+  >2. Un proyecto puede tener varios usuarios.
+  >3. Un Proyecto solo tiene un owner.
+  >4. Una tarea puede tener muchos usuarios.
+  >5. Una tarea solo pertenece a un proyecto.
+  >6. Un proyecto puede tener múltiples tareas.
+  >7. Una tarea puede tener varias etiquetas.
+  >8. Una etiqueta puede tener muchas tareas.
+  >9. Una tarea tiene un estado.
+  >10. Un estado puede estar en muchas tareas.
+  >11. Una tarea tiene una prioridad.
+  >12. Una prioridad puede estar en muchas tareas.<
+      
+
+
+# Instalación
+# Manual de usuario.
