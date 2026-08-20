@@ -12,7 +12,7 @@
   > Representa la relación entre una tarea y una etiqueta.
 
 <p align="center">
-  <img src="database/Entity-Relationship-Diagram.png" width="800" alt="arquitectura por capas.">
+  <img src="Entity-Relationship-Diagram.png" width="800" alt="arquitectura por capas.">
 </p>
 
   ### Relaciones
