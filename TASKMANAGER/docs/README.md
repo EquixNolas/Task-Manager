@@ -2,9 +2,9 @@
 Sección de documentación técnica y funcional del proyecto TaskManager.
 
 #  Índice
-1. [Requisitos.](TASKMANAGER/docs/requisitos.md)
-2. [Análisis.](docs/Cases/use-case.md)
-3. [Diseño.](docs/design/Design.md)
-4. [Base de Datos.](docs/database/data-model.md)
+1. [Requisitos.](../TASKMANAGER/docs/requisitos.md)
+2. [Análisis.](Cases/use-case.md)
+3. [Diseño.](design/Design.md)
+4. [Base de Datos.](database/data-model.md)
 5. Instalación.
 6. Manual de usuario.
