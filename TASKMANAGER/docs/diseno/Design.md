@@ -1,4 +1,4 @@
-# Diseño
+# 🎨 Diseño
   ### Diagrama de Clases
   >El siguiente diagrama representa las principales entidades del dominio y las relaciones existentes entre ellas.
 
