@@ -48,5 +48,5 @@ Cada Usuario tiene un proyecto asignado y en estos proyectos se encuentran las t
 📁 [Requisitos](TASKMANAGER/docs/requisitos.md)
 📁 [Diseño](TASKMANAGER/docs/diseno/Design.md)
 📁 [Base de datos](TASKMANAGER/docs/base-datos/data-model.md)
-📁 [Instalación](TASKMANAGER/docs/Instalacion.md)
+📁 [Instalación](TASKMANAGER/docs/Instalación.md)
 📁 [Manual de usuario](TASKMANAGER/docs/Manual-de-usuario.md)
