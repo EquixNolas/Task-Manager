@@ -3,7 +3,7 @@
   >El siguiente diagrama representa las principales entidades del dominio y las relaciones existentes entre ellas.
 
 <p align="center">
-  <img src="design/UML-Diagram.png" width="600" alt="Diagrama de clases.">
+  <img src="UML-Diagram.png" width="600" alt="Diagrama de clases.">
 </p>
 
   ### Diagrama de Secuencia: Crear Tarea
@@ -13,7 +13,7 @@
   4. Se comprueba que la tarea no exista de antes.
   5. El Dao/Repository persiste la reserva.
   6. El sistema devuelve el resultado.
-> ![secuencia](design/Secuence-diagram.png)
+> ![secuencia](Secuence-diagram.png)
 
   ### Arquitectura por capas
   * #### Controller
@@ -26,5 +26,5 @@
   > Representa las entidades del dominio y su relación con la base de datos.
 
 <p align="center">
-  <img src="design/layered-diagram2.jpg" width="800" alt="arquitectura por capas.">
+  <img src="layered-diagram2.jpg" width="800" alt="arquitectura por capas.">
 </p>
