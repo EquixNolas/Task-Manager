@@ -1,17 +1,33 @@
 package entities;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="proyecto")
 public class Proyecto {
 	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long projectId;
+	@Column(name="tittle")
 	private String tittle;
+	@Column(name="description")
 	private String description;
+	@Column(name="fecha_creacion")
 	private LocalDateTime creationDate;
+	@Column(name="fecha_vencimiento")
 	private LocalDateTime releaseDate;
 	
+	@ManyToMany
+	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
 
 	public Proyecto(Long projectId, String tittle, String description, LocalDateTime creationDate,

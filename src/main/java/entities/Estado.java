@@ -1,7 +1,7 @@
 package entities;
 
-public class Estado {
-
-	private Long statusId;
-	private String name;
+public enum Estado {
+Pendiente,
+En_progreso,
+Completada
 }

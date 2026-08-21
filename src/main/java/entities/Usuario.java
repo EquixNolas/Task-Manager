@@ -1,17 +1,31 @@
 package entities;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="usuarios")
 public class Usuario {
 	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
+	@Column(name="nombre")
 	private String name;
+	@Column(name="apellido_1")
 	private String lastName;
+	@Column(name="apellido_2")
 	private String secondLastName;
-	private String passwordHash;
+	@Column(name="email")
 	private String email;
+	@Column(name="password_hash")
+	private String passwordHash;
+	@Column(name="fecha_alta")
 	private LocalDateTime registrationDate;
 	
 	public Usuario(Long userId, String name, String lastName, String secondLastName, String passwordHash, String email,
