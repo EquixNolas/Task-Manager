@@ -27,13 +27,13 @@ El proyecto utiliza una arquitectura por capas para separar las responsabilidade
 El controller Gestiona las acciones recibidas, el Service contiene la lógica de negocio 
 y el DAO/Repository se encarga del acceso a los datos mediante JPA.
 
-![layered-diagram](TASKMANAGER/docs/diseno/layered-diagram2.jpg)
+![layered-diagram](docs/diseno/layered-diagram2.jpg)
 
 #  Modelo de datos
 La base de datos está formada principalmente por las entidades Usuarios, Proyectos y Tareas.
 Cada Usuario tiene un proyecto asignado y en estos proyectos se encuentran las tareas a realizar por dicho usuario con una fecha limite.
 
-![ER-Diagram](TASKMANAGER/docs/base-datos/Entity-Relationship-Diagram.png)
+![ER-Diagram](docs/base-datos/Entity-Relationship-Diagram.png)
 
 # Capturas de la CLI | In progress
 * Auntetificación.
@@ -45,8 +45,8 @@ Cada Usuario tiene un proyecto asignado y en estos proyectos se encuentran las t
 * Crear Proyecto / Tarea / Etiqueta.
 
 #  Documentación
-📁 [Requisitos](TASKMANAGER/docs/requisitos.md)
-📁 [Diseño](TASKMANAGER/docs/diseno/Design.md)
-📁 [Base de datos](TASKMANAGER/docs/base-datos/data-model.md)
-📁 [Instalación](TASKMANAGER/docs/Instalación.md)
-📁 [Manual de usuario](TASKMANAGER/docs/Manual-de-usuario.md)
+📁 [Requisitos](docs/requisitos.md)
+📁 [Diseño](docs/diseno/Design.md)
+📁 [Base de datos](docs/base-datos/data-model.md)
+📁 [Instalación](docs/Instalación.md)
+📁 [Manual de usuario](docs/Manual-de-usuario.md)
