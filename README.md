@@ -1,4 +1,4 @@
-#  TaskManager CLI - Java
+# 📝 TaskManager CLI - Java
 
 Es una aplicación desarrollada en Java para la gestión de tareas. 
 Permite administrar usuarios, proyectos, tareas y etiquetas.
