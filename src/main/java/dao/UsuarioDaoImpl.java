@@ -45,14 +45,28 @@ public class UsuarioDaoImpl extends AbstractDaoImpl implements IUsuarioDao {
 
 	@Override
 	public int deleteOne(Long valueId) {
-		// TODO Auto-generated method stub
-		return 0;
+		Usuario usuario = findById(valueId);
+		try {
+			if (usuario != null)
+			{
+				tx.begin();
+					em.remove(usuario);
+				tx.commit();
+				return 1;
+			}
+			else {
+				return 0;
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return -1;
+		}
 	}
 
 	@Override
 	public Usuario findById(Long valueId) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Usuario.class, valueId);
 	}
 
 	@SuppressWarnings("unchecked")
