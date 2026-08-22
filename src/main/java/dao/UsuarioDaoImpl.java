@@ -42,10 +42,12 @@ public class UsuarioDaoImpl extends AbstractDaoImpl implements IUsuarioDao {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Usuario> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		jpql = "from Usuario u";
+		query = em.createQuery(jpql);
+		return query.getResultList();
 	}
 
 }

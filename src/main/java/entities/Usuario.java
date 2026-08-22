@@ -16,6 +16,7 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="usuario_id")
 	private Long userId;
 	@Column(name="nombre")
 	private String name;

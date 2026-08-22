@@ -14,7 +14,6 @@ import entities.Usuario;
 
 public class test {
 
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		
 		Usuario usuario1 = new Usuario(
