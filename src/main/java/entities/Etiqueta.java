@@ -1,11 +1,14 @@
 package entities;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,6 +21,9 @@ public class Etiqueta {
 	private String name;
 	@Column(name="color")
 	private String color;
+	
+	@ManyToMany(mappedBy = "etiquetas")
+	private Set<Tarea> tareas = new HashSet<Tarea>();
 	
 	public Etiqueta(Long etiqueta_id, String name, String color) {
 		super();

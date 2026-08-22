@@ -44,6 +44,11 @@ public class Tarea {
 	@JoinColumn(name="proyecto_id")
 	private Proyecto proyecto;
 	
+	//Una tarea tiene muchas etiquetas 
+	//y una etiqueta sabe que tareas tiene
+	//El codigo de debajo se encarga de la tabla intermedia.
+	// OWNING SIDE
+	
 	@ManyToMany
 	@JoinTable(
 			name = "tarea_etiqueta",
@@ -53,6 +58,7 @@ public class Tarea {
 	private Set<Etiqueta> etiquetas = new HashSet<>();
 	//Set evita duplicados y hashSet inicializa el conjunto vacio etiquetas[]
 
+	
 	public Tarea(Long tareaId, String tittle, String description, LocalDateTime creationDate, LocalDateTime releaseDate,
 			Estado estado, Prioridad prioridad, Proyecto proyecto, Set<Etiqueta> etiquetas) {
 		super();

@@ -14,6 +14,7 @@ import entities.Usuario;
 
 public class test {
 
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		
 		Usuario usuario1 = new Usuario(
@@ -36,7 +37,7 @@ public class test {
 		
 		Etiqueta etiqueta = new Etiqueta(1L, "etiqueta 1", "HEX");
 		
-		Set tareasEtiquetas = new HashSet<Etiqueta>();
+		Set<Etiqueta> tareasEtiquetas = new HashSet<Etiqueta>();
 		tareasEtiquetas.add(etiqueta);
 		
 		Tarea tarea = new Tarea(
@@ -48,7 +49,8 @@ public class test {
 				Estado.En_progreso, Prioridad.ALTA, 
 				proyecto1, tareasEtiquetas);
 
-		System.out.println(tarea.getEtiquetas());
+		System.out.println("Tarea ID:"+tarea.getTareaId()+"\n"
+				+ "" + tarea.getTittle());
 	}
 
 }
