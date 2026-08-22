@@ -26,8 +26,21 @@ public class UsuarioDaoImpl extends AbstractDaoImpl implements IUsuarioDao {
 
 	@Override
 	public int updateOne(Usuario entity) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			if (findById(entity.getUserId()) != null) 
+			{
+				tx.begin();
+					em.merge(entity);
+				tx.commit();
+				return 1;
+			}
+			else {
+				return 0;
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return -1;
+		}
 	}
 
 	@Override
