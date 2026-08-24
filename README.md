@@ -7,7 +7,7 @@ Así como comprobar las fechas de cada tarea y proyecto.
 # 🗺️ Roadmap
 - [x] Diseño de la base de datos
 - [x] Diagramas UML
-- [ ] CRUD de usuarios
+- [x] CRUD de usuarios
 - [ ] CRUD de proyectos
 - [ ] CRUD de tareas
 - [ ] Sistema de etiquetas
