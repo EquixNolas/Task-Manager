@@ -24,7 +24,7 @@ public class Usuario {
 	private String lastName;
 	@Column(name="apellido_2")
 	private String secondLastName;
-	@Column(name="email")
+	@Column(name="email", unique=true, nullable=false)
 	private String email;
 	@Column(name="password_hash")
 	private String passwordHash;
@@ -103,9 +103,11 @@ public class Usuario {
 		this.registrationDate = registrationDate;
 	}
 
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(userId);
+		return Objects.hash(email, userId);
 	}
 
 	@Override
@@ -117,7 +119,7 @@ public class Usuario {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		return Objects.equals(userId, other.userId);
+		return Objects.equals(email, other.email) && Objects.equals(userId, other.userId);
 	}
 
 	@Override

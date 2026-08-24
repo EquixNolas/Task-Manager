@@ -3,6 +3,8 @@ package dao;
 import java.util.List;
 
 import entities.Usuario;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
 
 public class UsuarioDaoImpl extends AbstractDaoImpl implements IUsuarioDao {
 
@@ -20,8 +22,8 @@ public class UsuarioDaoImpl extends AbstractDaoImpl implements IUsuarioDao {
 			return 1;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			return 0;
 		}
-		return 0;
 	}
 
 	@Override
@@ -75,6 +77,20 @@ public class UsuarioDaoImpl extends AbstractDaoImpl implements IUsuarioDao {
 		jpql = "from Usuario u";
 		query = em.createQuery(jpql);
 		return query.getResultList();
+	}
+
+	@Override
+	public Usuario findByEmail(String email) {
+		try {
+			jpql = "FROM Usuario u WHERE u.email = :email";
+			query = em.createQuery(jpql,Usuario.class);
+			return (Usuario) query.setParameter("email", email)
+					.getSingleResult();
+
+			//return query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 }
