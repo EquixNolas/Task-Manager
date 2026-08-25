@@ -7,16 +7,24 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="proyecto")
+@Table(name="proyectos")
 public class Proyecto {
 	
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="proyecto_id")
 	private Long projectId;
+	
+	@ManyToMany
+	@JoinColumn(name="usuario_id")
+	private Usuario usuario;
+	
 	@Column(name="tittle")
 	private String tittle;
 	@Column(name="description")
@@ -26,9 +34,6 @@ public class Proyecto {
 	@Column(name="fecha_vencimiento")
 	private LocalDateTime releaseDate;
 	
-	@ManyToMany
-	@JoinColumn(name="usuario_id")
-	private Usuario usuario;
 
 	public Proyecto(Long projectId, String tittle, String description, LocalDateTime creationDate,
 			LocalDateTime releaseDate, Usuario usuario) {
