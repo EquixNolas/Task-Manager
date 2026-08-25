@@ -26,13 +26,16 @@ public class test {
 				LocalDateTime.of(2026, 8, 1, 6, 45)
 				);
 		
+		Set<Usuario> usuarios = new HashSet<Usuario>();
+		usuarios.add(usuario1);
+		
 		Proyecto proyecto1 = new Proyecto(
 				1L, 
-				"Primer proyecto", 
+				usuarios, 
+				"Primer proyecto",
 				"descripcion proyecto", 
 				LocalDateTime.of(2026, 8, 15, 15, 30), 
-				LocalDateTime.of(2026, 9, 25, 10, 12), 
-				usuario1);
+				LocalDateTime.of(2026, 9, 25, 10, 12));
 		
 		Etiqueta etiqueta = new Etiqueta(1L, "etiqueta 1", "HEX");
 		Etiqueta etiqueta2 = new Etiqueta(1L, "etiqueta 2", "HEX2");
@@ -52,7 +55,7 @@ public class test {
 
 		System.out.println("Tarea ID:"+tarea.getTareaId()+"\n"
 				+ "" + tarea.getTittle());
-		System.out.println(tarea);
+		System.out.println(proyecto1);
 	}
 
 }

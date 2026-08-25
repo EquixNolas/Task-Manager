@@ -1,13 +1,18 @@
 package entities;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,6 +35,14 @@ public class Usuario {
 	private String passwordHash;
 	@Column(name="fecha_alta")
 	private LocalDateTime registrationDate;
+	
+	@ManyToMany
+	@JoinTable(
+			name="usuario_proyecto",
+			joinColumns = @JoinColumn(name="usuario_id"),
+			inverseJoinColumns = @JoinColumn(name="proyecto_id")
+	)
+	private Set<Proyecto> proyectos = new HashSet<Proyecto>();
 	
 	public Usuario(Long userId, String name, String lastName, String secondLastName, String passwordHash, String email,
 			LocalDateTime registrationDate) {

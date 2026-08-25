@@ -1,14 +1,15 @@
 package entities;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
@@ -21,9 +22,8 @@ public class Proyecto {
 	@Column(name="proyecto_id")
 	private Long projectId;
 	
-	@ManyToMany
-	@JoinColumn(name="usuario_id")
-	private Usuario usuario;
+	@ManyToMany(mappedBy="proyectos")
+	private Set<Usuario> usuarios = new HashSet<Usuario>();
 	
 	@Column(name="tittle")
 	private String tittle;
@@ -34,16 +34,15 @@ public class Proyecto {
 	@Column(name="fecha_vencimiento")
 	private LocalDateTime releaseDate;
 	
-
-	public Proyecto(Long projectId, String tittle, String description, LocalDateTime creationDate,
-			LocalDateTime releaseDate, Usuario usuario) {
+	public Proyecto(Long projectId, Set<Usuario> usuarios, String tittle, String description,
+			LocalDateTime creationDate, LocalDateTime releaseDate) {
 		super();
 		this.projectId = projectId;
+		this.usuarios = usuarios;
 		this.tittle = tittle;
 		this.description = description;
 		this.creationDate = creationDate;
 		this.releaseDate = releaseDate;
-		this.usuario = usuario;
 	}
 
 	public Proyecto() {
@@ -56,6 +55,14 @@ public class Proyecto {
 
 	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
+	}
+
+	public Set<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(Set<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
 	public String getTittle() {
@@ -90,14 +97,6 @@ public class Proyecto {
 		this.releaseDate = releaseDate;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(projectId);
@@ -117,10 +116,7 @@ public class Proyecto {
 
 	@Override
 	public String toString() {
-		return "Proyecto [projectId=" + projectId + ", tittle=" + tittle + ", description=" + description
-				+ ", creationDate=" + creationDate + ", releaseDate=" + releaseDate + ", usuario=" + usuario + "]";
+		return "Proyecto [projectId=" + projectId + ", usuarios=" + usuarios + ", tittle=" + tittle + ", description="
+				+ description + ", creationDate=" + creationDate + ", releaseDate=" + releaseDate + "]";
 	}
-
-	
-	
 }
