@@ -84,10 +84,9 @@ public class UsuarioDaoImpl extends AbstractDaoImpl implements IUsuarioDao {
 		try {
 			jpql = "FROM Usuario u WHERE u.email = :email";
 			query = em.createQuery(jpql,Usuario.class);
-			return (Usuario) query.setParameter("email", email)
-					.getSingleResult();
+			query.setParameter("email", email);
 
-			//return query.getSingleResult();
+			return (Usuario) query.getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		}

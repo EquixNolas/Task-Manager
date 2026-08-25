@@ -128,6 +128,4 @@ public class Usuario {
 				+ secondLastName + ", passwordHash=" + passwordHash + ", email=" + email + ", registrationDate="
 				+ registrationDate + "]";
 	}
-	
-	
 }
