@@ -27,7 +27,7 @@ public class Proyecto {
 	
 	@Column(name="tittle")
 	private String tittle;
-	@Column(name="description")
+	@Column(name="descripcion")
 	private String description;
 	@Column(name="fecha_creacion")
 	private LocalDateTime creationDate;

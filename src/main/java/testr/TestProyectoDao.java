@@ -13,7 +13,7 @@ public class TestProyectoDao {
 	}
 	
 	public static void main(String[] args) {
-		//leerTodos();
+		leerTodos();
 		//crearProyecto();
 		//eliminarProyecto(14L);
 		//modificarProyecto();
