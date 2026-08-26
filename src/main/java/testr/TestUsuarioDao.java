@@ -37,7 +37,7 @@ public class TestUsuarioDao {
 				null, 
 				"amsdmasdm", 
 				"palo@correo.com", 
-				LocalDateTime.of(2026, 11, 03, 11, 47) );
+				LocalDateTime.of(2026, 11, 03, 11, 47));
 		Usuario usuario2 =  new Usuario(
 				8L, 
 				"Juan", 

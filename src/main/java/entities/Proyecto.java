@@ -10,7 +10,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,8 +25,17 @@ public class Proyecto {
 	@Column(name="proyecto_id")
 	private Long projectId;
 	
-	@ManyToMany(mappedBy="proyectos")
-	private Set<Usuario> usuarios = new HashSet<Usuario>();
+	@ManyToOne
+	@JoinColumn(name="usuario_id", nullable=false)
+	private Usuario owner;
+	
+	@ManyToMany
+	@JoinTable(
+			name="usuario_proyecto",
+			joinColumns = @JoinColumn(name="proyecto_id"),
+			inverseJoinColumns = @JoinColumn(name="usuario_id")
+	)
+	private Set<Usuario> members = new HashSet<Usuario>();
 	
 	@Column(name="tittle")
 	private String tittle;
@@ -34,11 +46,12 @@ public class Proyecto {
 	@Column(name="fecha_vencimiento")
 	private LocalDateTime releaseDate;
 	
-	public Proyecto(Long projectId, Set<Usuario> usuarios, String tittle, String description,
+	public Proyecto(Long projectId, Usuario owner, Set<Usuario> members, String tittle, String description,
 			LocalDateTime creationDate, LocalDateTime releaseDate) {
 		super();
 		this.projectId = projectId;
-		this.usuarios = usuarios;
+		this.owner = owner;
+		this.members = members;
 		this.tittle = tittle;
 		this.description = description;
 		this.creationDate = creationDate;
@@ -57,12 +70,20 @@ public class Proyecto {
 		this.projectId = projectId;
 	}
 
-	public Set<Usuario> getUsuarios() {
-		return usuarios;
+	public Usuario getOwner() {
+		return owner;
 	}
 
-	public void setUsuarios(Set<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setOwner(Usuario owner) {
+		this.owner = owner;
+	}
+
+	public Set<Usuario> getMembers() {
+		return members;
+	}
+
+	public void setMembers(Set<Usuario> members) {
+		this.members = members;
 	}
 
 	public String getTittle() {
@@ -116,7 +137,9 @@ public class Proyecto {
 
 	@Override
 	public String toString() {
-		return "Proyecto [projectId=" + projectId + ", usuarios=" + usuarios + ", tittle=" + tittle + ", description="
-				+ description + ", creationDate=" + creationDate + ", releaseDate=" + releaseDate + "]";
+		return "Proyecto [projectId=" + projectId + ", owner=" + owner + ", members=" + members + ", tittle=" + tittle
+				+ ", description=" + description + ", creationDate=" + creationDate + ", releaseDate=" + releaseDate
+				+ "]";
 	}
+	
 }

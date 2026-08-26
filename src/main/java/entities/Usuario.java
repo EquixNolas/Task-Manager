@@ -13,6 +13,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -36,23 +38,16 @@ public class Usuario {
 	@Column(name="fecha_alta")
 	private LocalDateTime registrationDate;
 	
-	@ManyToMany
-	@JoinTable(
-			name="usuario_proyecto",
-			joinColumns = @JoinColumn(name="usuario_id"),
-			inverseJoinColumns = @JoinColumn(name="proyecto_id")
-	)
-	private Set<Proyecto> proyectos = new HashSet<Proyecto>();
-	
-	public Usuario(Long userId, String name, String lastName, String secondLastName, String passwordHash, String email,
+
+	public Usuario(Long userId, String name, String lastName, String secondLastName, String email, String passwordHash,
 			LocalDateTime registrationDate) {
 		super();
 		this.userId = userId;
 		this.name = name;
 		this.lastName = lastName;
 		this.secondLastName = secondLastName;
-		this.passwordHash = passwordHash;
 		this.email = email;
+		this.passwordHash = passwordHash;
 		this.registrationDate = registrationDate;
 	}
 
@@ -92,20 +87,20 @@ public class Usuario {
 		this.secondLastName = secondLastName;
 	}
 
-	public String getPasswordHash() {
-		return passwordHash;
-	}
-
-	public void setPasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
-	}
-
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getPasswordHash() {
+		return passwordHash;
+	}
+
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
 	}
 
 	public LocalDateTime getRegistrationDate() {
@@ -120,7 +115,7 @@ public class Usuario {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, userId);
+		return Objects.hash(userId);
 	}
 
 	@Override
@@ -132,13 +127,13 @@ public class Usuario {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		return Objects.equals(email, other.email) && Objects.equals(userId, other.userId);
+		return Objects.equals(userId, other.userId);
 	}
 
 	@Override
 	public String toString() {
 		return "Usuario [userId=" + userId + ", name=" + name + ", lastName=" + lastName + ", secondLastName="
-				+ secondLastName + ", passwordHash=" + passwordHash + ", email=" + email + ", registrationDate="
+				+ secondLastName + ", email=" + email + ", passwordHash=" + passwordHash + ", registrationDate="
 				+ registrationDate + "]";
 	}
 }

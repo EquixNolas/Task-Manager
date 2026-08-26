@@ -1,6 +1,5 @@
 package testr;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +30,7 @@ public class test {
 		
 		Proyecto proyecto1 = new Proyecto(
 				1L, 
-				usuarios, 
+				usuario1, usuarios, 
 				"Primer proyecto",
 				"descripcion proyecto", 
 				LocalDateTime.of(2026, 8, 15, 15, 30), 
