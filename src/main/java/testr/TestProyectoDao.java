@@ -2,6 +2,7 @@ package testr;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import dao.IProyectoDao;
@@ -24,15 +25,59 @@ public class TestProyectoDao {
 	public static void main(String[] args) {
 		
 		//insertOnUsuarioProyecto(1L, 1L);
+		//System.out.println(udao.findById(4L));
+		
+		//System.out.println("\n PRUEBA CRUD PROYECTO \n");
 		//leerTodos();
 		//crearProyecto();
-		leerTodos();
-		modificarProyecto(15L);
-		System.out.println("\n DESPUES \n");
-		leerTodos();
+		//modificarProyecto(15L);
 		//eliminarProyecto(14L);
-		//System.out.println(udao.findById(4L));
+		
+		/*
+		System.out.println("\n PRUEBA ELIMINAR \n");
+		System.out.println(pdao.findById(15L).getMembers().size());;
+		eliminarMienbro();
+		System.out.println(pdao.findById(15L).getMembers().size());;
+		*/
+		
+		leerTodos();
+		System.out.println("\n Lista de proyectos por busqueda helper methods \n");
+		//buscarPorOwner(3L);
+		
+		System.out.println("\n------------FIN DE PROGRAMA------------");
 	}
+	
+	public static void buscarPorMienbro(Long user) {
+		List<Proyecto> proyectos = pdao.findByMember(user);
+		if(proyectos.size() > 0)
+			//Lambda que imprime linea por linea
+			proyectos.forEach(System.out::println);
+		else
+			System.out.println("NO HAY PROYECTO ASOCIADO AL USUARIO: " +user+"L");
+		
+	}
+	
+	public static void buscarPorOwner(Long owner) {
+		List<Proyecto> proyectos = pdao.findByOwner(owner);
+		if(proyectos.size() > 0)
+			//Lambda que imprime linea por linea
+			proyectos.forEach(System.out::println);
+		else
+			System.out.println("NO HAY PROYECTO ASOCIADO AL USUARIO: " + owner+"L");
+		
+	}
+	
+	public static void addMienbros() {
+		for (Usuario u : udao.findAll())
+			pdao.addMember(15L, u.getUserId());
+
+		System.out.println(pdao.findById(15L).getMembers().size());
+	}
+	
+	public static void eliminarMienbro() {
+		pdao.removeMember(15L, 3L);
+	}
+	
 	public static void modificarProyecto(Long proyectoId) {
 		Proyecto p = pdao.findById(proyectoId);
 		if(p != null) {
@@ -44,6 +89,7 @@ public class TestProyectoDao {
 			System.out.println("Este Proyecto No Existe");
 		}
 	}
+	
 	public static void crearProyecto() {
 		Usuario u1 = udao.findById(2L);
 		Set<Usuario> usuarios = new HashSet<Usuario>();
@@ -58,6 +104,7 @@ public class TestProyectoDao {
 				LocalDateTime.of(2027, 1, 1, 23, 59));
 		pdao.insertOne(p);
 	}
+	
 	public static void eliminarProyecto(Long proyectoId) {
 		switch (pdao.deleteOne(proyectoId)) {
 		case 1: System.out.println("ELIMINANDO...");break;
@@ -74,12 +121,13 @@ public class TestProyectoDao {
 	}
 	
 	public static void insertOnUsuarioProyecto(Long usuarioId, Long proyectoId) {
-		//Proyecto proyecto = pdao.findById(proyectoId);
-		//Usuario usuario = udao.findById(usuarioId);
-		//proyecto.getUsuarios().add(usuario);
-		//pdao.updateOne(proyecto);
-		//System.out.println(proyecto);
-
+	/*
+		Proyecto proyecto = pdao.findById(proyectoId);
+		Usuario usuario = udao.findById(usuarioId);
+		proyecto.getUsuarios().add(usuario);
+		pdao.updateOne(proyecto);
+		System.out.println(proyecto);
+	*/
 		for (Proyecto p : pdao.findAll()) {
 			Usuario usuario = udao.findById(p.getProjectId());
 			p.getMembers().add(usuario);

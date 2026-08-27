@@ -15,7 +15,8 @@ public class ProyectoDaoImpl extends AbstractDaoImpl implements IProyectoDao{
 			tx.commit();
 			return 1;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.err.println("Error critico en insertOne: " + e.getMessage());
+			e.printStackTrace();
 			return 0;
 		}
 	}
@@ -33,7 +34,8 @@ public class ProyectoDaoImpl extends AbstractDaoImpl implements IProyectoDao{
 				return 0;
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.err.println("Error Critico en updateOne:" + e.getMessage());
+			e.printStackTrace();
 			return -1;
 		}
 	}
@@ -52,7 +54,8 @@ public class ProyectoDaoImpl extends AbstractDaoImpl implements IProyectoDao{
 				return 0;
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.err.println("Error Critico en deleteOne: " + e.getMessage());
+			e.printStackTrace();
 			return -1;
 		}
 	}
@@ -123,16 +126,24 @@ public class ProyectoDaoImpl extends AbstractDaoImpl implements IProyectoDao{
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Proyecto> findByOwner(Long ownerId) {
-		jpql = "FROM ";
-		return null;
+		jpql = "FROM Proyecto p WHERE p.owner.userId = :ownerId";
+		query = em.createQuery(jpql, Proyecto.class);
+		query.setParameter("ownerId", ownerId);
+		
+		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Proyecto> findByMember(Long userId) {
-		// TODO Auto-generated method stub
-		return null;
+		jpql = "FROM Proyecto p WHERE p.member.userId = :userId";
+		query = em.createQuery(jpql, Proyecto.class);
+		query.setParameter("userId", userId);
+		
+		return query.getResultList();
 	}
 
 	@Override
