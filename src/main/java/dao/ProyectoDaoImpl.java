@@ -139,7 +139,7 @@ public class ProyectoDaoImpl extends AbstractDaoImpl implements IProyectoDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Proyecto> findByMember(Long userId) {
-		jpql = "FROM Proyecto p WHERE p.member.userId = :userId";
+		jpql = "FROM Proyecto p JOIN p.members m WHERE m.userId = :userId";
 		query = em.createQuery(jpql, Proyecto.class);
 		query.setParameter("userId", userId);
 		

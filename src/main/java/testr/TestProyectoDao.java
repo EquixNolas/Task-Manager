@@ -24,7 +24,7 @@ public class TestProyectoDao {
 	
 	public static void main(String[] args) {
 		
-		//insertOnUsuarioProyecto(1L, 1L);
+		//insertOnUsuarioProyecto(3L, 5L);
 		//System.out.println(udao.findById(4L));
 		
 		//System.out.println("\n PRUEBA CRUD PROYECTO \n");
@@ -40,14 +40,31 @@ public class TestProyectoDao {
 		System.out.println(pdao.findById(15L).getMembers().size());;
 		*/
 		
-		leerTodos();
-		System.out.println("\n Lista de proyectos por busqueda helper methods \n");
-		//buscarPorOwner(3L);
+		leerTodosMiembros();
+		System.out.println("\n Lista de proyectos por busqueda | helper methods \n");
+		//buscarPorOwner(6L);
+		listarMiembros(5L);//ProyectoId 5 tiene 4 miembros
+		listarMiembros(3L);//ProyectoId 3 tiene 2 miembros
+		listarMiembros(1L);//ProyectoId 3 tiene 1 miembro
+		listarMiembros(19L);//No existe
+		
+		//buscarPorMiembro(7L);
 		
 		System.out.println("\n------------FIN DE PROGRAMA------------");
 	}
 	
-	public static void buscarPorMienbro(Long user) {
+	public static void listarMiembros(Long	proyectoId) {
+		Proyecto p = pdao.findById(proyectoId);
+		if(p !=null) {
+			System.out.println("Proyecto: "+p.getProjectId());
+			Set<Usuario> u = p.getMembers();
+			u.forEach(System.out::println);
+		}
+		else
+			System.out.println("El proyecto "+proyectoId+" no se encontró");
+	}
+	
+	public static void buscarPorMiembro(Long user) {
 		List<Proyecto> proyectos = pdao.findByMember(user);
 		if(proyectos.size() > 0)
 			//Lambda que imprime linea por linea
@@ -120,18 +137,20 @@ public class TestProyectoDao {
 		}
 	}
 	
+	public static void leerTodosMiembros() {
+		for (Proyecto p : pdao.findAll()) {
+			p.getMembers().size();
+			System.out.println("[ProjectId "+p.getProjectId()
+			+", tittle "+p.getTittle()
+			+", members "+p.getMembers().size()+"]");
+		}
+	}
+
 	public static void insertOnUsuarioProyecto(Long usuarioId, Long proyectoId) {
-	/*
 		Proyecto proyecto = pdao.findById(proyectoId);
 		Usuario usuario = udao.findById(usuarioId);
-		proyecto.getUsuarios().add(usuario);
+		proyecto.getMembers().add(usuario);
 		pdao.updateOne(proyecto);
 		System.out.println(proyecto);
-	*/
-		for (Proyecto p : pdao.findAll()) {
-			Usuario usuario = udao.findById(p.getProjectId());
-			p.getMembers().add(usuario);
-			pdao.updateOne(p);
-		}
 	}
 }
