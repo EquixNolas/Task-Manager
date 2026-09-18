@@ -49,7 +49,7 @@ public class test {
 				"descripcion de prueba", 
 				LocalDateTime.of(2026, 8, 21, 10, 0), 
 				LocalDateTime.of(2026, 8, 30, 23, 59),
-				Estado.En_progreso, Prioridad.ALTA, 
+				Estado.En_progreso, Prioridad.Alta, 
 				proyecto1, tareasEtiquetas);
 
 		System.out.println("Tarea ID:"+tarea.getTareaId()+"\n"

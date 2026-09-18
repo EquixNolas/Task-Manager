@@ -1,9 +1,9 @@
 package entities;
 
 public enum Prioridad {
-	BAJA(1),
-	MEDIA(2),
-	ALTA(3);
+	Baja(1),
+	Media(2),
+	Alta(3);
 
 	private int valor;
 	

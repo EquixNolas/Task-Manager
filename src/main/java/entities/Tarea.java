@@ -5,7 +5,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import converters.EstadoConverter;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -26,16 +28,16 @@ public class Tarea {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="tarea_id")
 	private Long tareaId;
-	@Column(name="titte", nullable = false, length = 100)
+	@Column(name="tittle", nullable = false, length = 100)
 	private String tittle;
-	@Column(name="description")
+	@Column(name="descripcion")
 	private String description;
 	@Column(name="fecha_creacion", updatable = false)
 	private LocalDateTime creationDate;
 	@Column(name="fecha_vencimiento")
 	private LocalDateTime releaseDate;
 	
-	@Enumerated(EnumType.STRING)
+	@Convert(converter = EstadoConverter.class)
 	@Column(name="estado", length=20)
 	private Estado estado;
 	
