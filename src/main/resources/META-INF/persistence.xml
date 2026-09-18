@@ -3,6 +3,8 @@
 	<persistence-unit name="TASKMANAGER" transaction-type="RESOURCE_LOCAL">
 		<class>entities.Usuario</class>
 		<class>entities.Proyecto</class>
+		<class>entities.Tarea</class>
+		<class>entities.Etiqueta</class>
 		<properties>
 			<property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://127.0.0.2:3306/task_manager?serverTimeZone=Europe/Madrid"/>
 			<property name="jakarta.persistence.jdbc.user" value="root"/>

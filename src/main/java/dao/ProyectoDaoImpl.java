@@ -1,5 +1,6 @@
 package dao;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import entities.Proyecto;
@@ -146,10 +147,14 @@ public class ProyectoDaoImpl extends AbstractDaoImpl implements IProyectoDao{
 		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Proyecto> findActiveProjects() {
-		// TODO Auto-generated method stub
-		return null;
+		jpql = "FROM Proyecto p WHERE p.releaseDate > :time";
+		query = em.createQuery(jpql,Proyecto.class);
+		query.setParameter("time", LocalDateTime.now());
+		
+		return query.getResultList();
 	}
 
 }

@@ -40,13 +40,16 @@ public class TestProyectoDao {
 		System.out.println(pdao.findById(15L).getMembers().size());;
 		*/
 		
-		leerTodosMiembros();
-		System.out.println("\n Lista de proyectos por busqueda | helper methods \n");
+		System.out.println("\n Lista de proyectos por busqueda | HELPER METHODS\n");
+		//leerTodosMiembros();
 		//buscarPorOwner(6L);
+		/*
 		listarMiembros(5L);//ProyectoId 5 tiene 4 miembros
 		listarMiembros(3L);//ProyectoId 3 tiene 2 miembros
 		listarMiembros(1L);//ProyectoId 3 tiene 1 miembro
 		listarMiembros(19L);//No existe
+		*/
+		pdao.findActiveProjects().forEach(System.out::println);
 		
 		//buscarPorMiembro(7L);
 		

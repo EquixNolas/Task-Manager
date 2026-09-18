@@ -11,6 +11,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -21,7 +22,9 @@ import jakarta.persistence.Table;
 @Table(name="tareas")
 public class Tarea {
 
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="tarea_id")
 	private Long tareaId;
 	@Column(name="titte", nullable = false, length = 100)
 	private String tittle;

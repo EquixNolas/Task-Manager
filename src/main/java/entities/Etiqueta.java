@@ -8,6 +8,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
@@ -15,8 +16,10 @@ import jakarta.persistence.Table;
 @Table(name="etiquetas")
 public class Etiqueta {
 	
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long etiqueta_id;
+	@Column(name="etiqueta_id")
+	private Long etiquetaId;
 	@Column(name="nombre")
 	private String name;
 	@Column(name="color")
@@ -27,7 +30,7 @@ public class Etiqueta {
 	
 	public Etiqueta(Long etiqueta_id, String name, String color) {
 		super();
-		this.etiqueta_id = etiqueta_id;
+		this.etiquetaId = etiqueta_id;
 		this.name = name;
 		this.color = color;
 	}
@@ -37,11 +40,11 @@ public class Etiqueta {
 	}
 
 	public Long getEtiqueta_id() {
-		return etiqueta_id;
+		return etiquetaId;
 	}
 
 	public void setEtiqueta_id(Long etiqueta_id) {
-		this.etiqueta_id = etiqueta_id;
+		this.etiquetaId = etiqueta_id;
 	}
 
 	public String getName() {
@@ -62,7 +65,7 @@ public class Etiqueta {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(etiqueta_id);
+		return Objects.hash(etiquetaId);
 	}
 
 	@Override
@@ -74,12 +77,12 @@ public class Etiqueta {
 		if (getClass() != obj.getClass())
 			return false;
 		Etiqueta other = (Etiqueta) obj;
-		return Objects.equals(etiqueta_id, other.etiqueta_id);
+		return Objects.equals(etiquetaId, other.etiquetaId);
 	}
 
 	@Override
 	public String toString() {
-		return "Etiqueta [etiqueta_id=" + etiqueta_id + ", name=" + name + ", color=" + color + "]";
+		return "Etiqueta [etiqueta_id=" + etiquetaId + ", name=" + name + ", color=" + color + "]";
 	}
 	
 }
