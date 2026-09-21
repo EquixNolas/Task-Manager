@@ -6,7 +6,6 @@ import java.util.List;
 import entities.Tarea;
 
 public interface ITareaDao extends IGenericDao<Tarea, Long>{
-	List<Tarea> findTareas();
 	List<Tarea> findByProyecto(Long proyectoId);
 	List<Tarea> findByProyectoAndStatus(Long proyectoId, String status);
 	List<Tarea> findByAssignee(Long usuarioId); // MIS TAREAS PENDIENTES

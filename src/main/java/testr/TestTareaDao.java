@@ -1,6 +1,7 @@
 package testr;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import dao.IProyectoDao;
 import dao.ITareaDao;
@@ -26,11 +27,24 @@ public class TestTareaDao {
 		
 		//System.out.println("\n LISTAR TODOS\n");
 		//listarTodos();
-		System.out.println("\n CRUDTAREA\n");
+		
+		//System.out.println("\n CRUDTAREA\n");
 		//crearTarea();
 		//modificarTarea(15L);
 		//eliminarTarea(15L);
-		listarTodos();
+		
+		System.out.println("\n FindBy \n");
+		//buscarPorProyecto(1L);
+		buscarPorProyectoYEstado(1L, "En Progreso");
+	}
+	//Busqueda por Proyecto y estado
+	public static void buscarPorProyectoYEstado(Long proyectoId, String status) {
+		tdao.findByProyectoAndStatus(proyectoId, status).forEach(System.out::println);
+	}
+	//busqueda por proyecto asociado
+	public static void buscarPorProyecto(Long proyectoId) {
+		//System.out.println(tdao.findByProyecto(proyectoId));
+		tdao.findByProyecto(proyectoId).forEach(System.out::println);
 	}
 	
 	//Crear Tarea Con el ID 15

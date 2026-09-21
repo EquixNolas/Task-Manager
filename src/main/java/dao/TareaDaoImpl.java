@@ -2,8 +2,7 @@ package dao;
 
 import java.util.List;
 
-import org.eclipse.persistence.jpa.jpql.tools.model.EclipseLinkSelectExpressionStateObjectBuilder;
-
+import entities.Estado;
 import entities.Tarea;
 
 public class TareaDaoImpl extends AbstractDaoImpl implements ITareaDao{
@@ -72,22 +71,39 @@ public class TareaDaoImpl extends AbstractDaoImpl implements ITareaDao{
 		return query.getResultList();
 	}
 
-	@Override
-	public List<Tarea> findTareas() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Tarea> findByProyecto(Long proyectoId) {
-		// TODO Auto-generated method stub
-		return null;
+		jpql = "FROM Tarea t WHERE t.proyecto.projectId = :Id";
+		query = em.createQuery(jpql, Tarea.class);
+		query.setParameter("Id", proyectoId);
+		
+		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Tarea> findByProyectoAndStatus(Long proyectoId, String status) {
-		// TODO Auto-generated method stub
-		return null;
+		jpql = "FROM Tarea t WHERE t.proyecto.projectId = :Id AND t.estado = :status";
+		query = em.createQuery(jpql, Tarea.class);
+		query.setParameter("Id", proyectoId);
+		
+		try {
+			//INSTANCIA DEL CONVERTIDOR
+			converters.EstadoConverter converter = new converters.EstadoConverter();
+			//Convertir String
+			Estado estadoEnum = converter.convertToEntityAttribute(status);
+			
+			query.setParameter("status", estadoEnum);
+			
+			return query.getResultList();
+			
+		} catch (Exception e) {
+			System.err.println("Error: El estado proporcionado " + status
+								+ " no es válido. " + e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
