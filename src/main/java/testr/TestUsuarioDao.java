@@ -53,8 +53,8 @@ public class TestUsuarioDao {
 	public static void eliminarUsuario(Long id) {
 		switch (udao.deleteOne(id)) {
 		case 1: System.out.println("ELIMINANDO...");break;
-		case 2: System.out.println("Usuario no existe..."); break;
-		case -1:System.out.println("No Se Puede Eliminar...");
+		case 0: System.out.println("Usuario no existe..."); break;
+		case -1:System.out.println("No Se Puede Eliminar..."); break;
 			default: System.out.println("Es imposible de realizar");
 		}
 	}

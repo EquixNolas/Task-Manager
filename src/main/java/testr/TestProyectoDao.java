@@ -127,10 +127,10 @@ public class TestProyectoDao {
 	
 	public static void eliminarProyecto(Long proyectoId) {
 		switch (pdao.deleteOne(proyectoId)) {
-		case 1: System.out.println("ELIMINANDO...");break;
-		case 2: System.out.println("Usuario no existe..."); break;
-		case -1:System.out.println("No Se Puede Eliminar...");
-			default: System.out.println("Es imposible de realizar");
+			case 1: System.out.println("ELIMINANDO...");break;
+			case 0: System.out.println("El proyecto no existe..."); break;
+			case -1:System.out.println("No Se Puede Eliminar..."); break;
+				default: System.out.println("Es imposible de realizar");
 		}
 	}
 	

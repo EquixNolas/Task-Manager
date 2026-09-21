@@ -2,6 +2,8 @@ package dao;
 
 import java.util.List;
 
+import org.eclipse.persistence.jpa.jpql.tools.model.EclipseLinkSelectExpressionStateObjectBuilder;
+
 import entities.Tarea;
 
 public class TareaDaoImpl extends AbstractDaoImpl implements ITareaDao{
@@ -23,17 +25,38 @@ public class TareaDaoImpl extends AbstractDaoImpl implements ITareaDao{
 	@Override
 	public int updateOne(Tarea entity) {
 		try {
-			return 1;
+			if (findById(entity.getTareaId()) != null) {
+				tx.begin();
+					em.persist(entity);
+				tx.commit();
+				return 1;
+			}else {
+				return 0;
+			}
 		} catch (Exception e) {
 			System.err.println("Error critico en updateOne: " + e.getMessage());
 			e.getStackTrace();
-			return 0;
+			return -1;
 		}
 	}
 
 	@Override
 	public int deleteOne(Long valueId) {
-		return 0;
+		Tarea tarea = findById(valueId);
+		try {
+			if (tarea != null) {
+				tx.begin();
+					em.remove(tarea);
+				tx.commit();
+				return 1;
+			}else {
+				return 0;
+			}
+		} catch (Exception e) {
+			System.err.println("Error critico en deleteOne: " + e.getMessage());
+			e.getStackTrace();
+			return -1;
+		}
 	}
 
 	@Override
