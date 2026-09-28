@@ -9,7 +9,7 @@ Así como comprobar las fechas de cada tarea y proyecto.
 - [x] Diagramas UML
 - [x] CRUD de usuarios
 - [x] CRUD de proyectos
-- [ ] CRUD de tareas
+- [x] CRUD de tareas
 - [ ] Sistema de etiquetas
 - [ ] Validaciones
 - [ ] Pruebas
