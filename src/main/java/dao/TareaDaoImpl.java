@@ -1,5 +1,8 @@
 package dao;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import entities.Estado;
@@ -111,7 +114,7 @@ public class TareaDaoImpl extends AbstractDaoImpl implements ITareaDao{
 	public List<Tarea> findByAssignee(Long userId) {
 		em.clear();
 		
-	    jpql = "SELECT t FROM Tarea t LEFT JOIN t.proyecto p LEFT JOIN p.members m WHERE m.userId = :userId";
+	    jpql = "SELECT t FROM Tarea t JOIN t.proyecto p JOIN p.members m WHERE m.userId = :userId";
 	    
 	    TypedQuery<Tarea> query = em.createQuery(jpql, Tarea.class);
 	    query.setParameter("userId", userId);
@@ -122,7 +125,18 @@ public class TareaDaoImpl extends AbstractDaoImpl implements ITareaDao{
 
 	@Override
 	public List<Tarea> findOverdueTasks(Long proyectoId) {
-		return null;
+		jpql = "FROM Tarea t "
+				+ "WHERE t.proyecto.projectId = :proyectoId "
+				+ "AND t.releaseDate < :actualDate "
+				+ "AND t.estado != :stateFilter";
+		
+		TypedQuery<Tarea> query = em.createQuery(jpql, Tarea.class);
+
+		query.setParameter("proyectoId", proyectoId);
+		query.setParameter("actualDate", LocalDateTime.now());
+		query.setParameter("stateFilter", Estado.Completada);
+		
+		return query.getResultList();
 	}
 
 	@Override

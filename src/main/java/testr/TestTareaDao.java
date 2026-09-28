@@ -33,14 +33,20 @@ public class TestTareaDao {
 		//modificarTarea(15L);
 		//eliminarTarea(15L);
 		
-		System.out.println("\n FindBy \n");
+		System.out.println("\n ___FindBy Methods___\n");
 		//buscarPorProyecto(1L);
 		//buscarPorProyectoYEstado(1L, "En Progreso");
-		findAssginee(1L);
+		//findAssginee(2L);
+		findOverdue(2L);
+	}
+	
+	//Busqueda por proyecto caducado
+	public static void findOverdue(Long pId) {
+		tdao.findOverdueTasks(pId).forEach(System.out::println);
 	}
 	//Busqueda por asignado
 	public static void findAssginee(Long userId) {
-		tdao.findByAssignee(userId);
+		tdao.findByAssignee(userId).forEach(System.out::println);
 	}
 	
 	//Busqueda por Proyecto y estado
