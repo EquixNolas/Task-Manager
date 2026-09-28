@@ -16,5 +16,5 @@ public interface ITareaDao extends IGenericDao<Tarea, Long>{
 	List<Tarea> findTasksDueToday(); //Tareas que vencen hoy
 	
 	boolean assignUser(Long tareaId, Long usuarioId);
-	int countTaskByStatus(Long proyectoId, String status);
+	Long countTaskByStatus(Long proyectoId, String status);
 }

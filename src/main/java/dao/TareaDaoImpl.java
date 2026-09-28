@@ -3,10 +3,13 @@ package dao;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import entities.Estado;
+import entities.Proyecto;
 import entities.Tarea;
+import entities.Usuario;
 import jakarta.persistence.TypedQuery;
 
 public class TareaDaoImpl extends AbstractDaoImpl implements ITareaDao{
@@ -141,20 +144,54 @@ public class TareaDaoImpl extends AbstractDaoImpl implements ITareaDao{
 
 	@Override
 	public List<Tarea> findTasksDueToday() {
-		// TODO Auto-generated method stub
-		return null;
+		LocalDateTime startToday = LocalDate.now().atStartOfDay();
+		LocalDateTime endToday = LocalDate.now().atTime(LocalTime.MAX);
+		
+		jpql = "FROM Tarea t WHERE t.releaseDate BETWEEN :start AND :end";
+		
+		TypedQuery<Tarea> query = em.createQuery(jpql, Tarea.class);
+		query.setParameter("start", startToday);
+		query.setParameter("end", endToday);
+		
+		return query.getResultList();
 	}
 
 	@Override
 	public boolean assignUser(Long tareaId, Long usuarioId) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			Tarea tarea = findById(tareaId);
+			if(tarea == null || tarea.getProyecto() == null)
+				return false;
+			
+			Proyecto proyecto = tarea.getProyecto();
+			
+			Usuario usuario = em.find(Usuario.class, usuarioId);
+			if(usuario == null)
+				return false;
+			
+			proyecto.getMembers().add(usuario);
+
+			em.merge(proyecto);
+			
+			return true;
+		} catch (Exception e) {
+			System.err.println("Error: " + e.getMessage());
+			return false;
+		}
 	}
 
 	@Override
-	public int countTaskByStatus(Long proyectoId, String status) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Long countTaskByStatus(Long proyectoId, String status) {
+		 try {
+		        jpql = "SELECT COUNT(t) FROM Tarea t WHERE t.estado = :estado";
+		        TypedQuery<Long> query = em.createQuery(jpql, Long.class);
+		        query.setParameter("estado", status);
+		        return query.getSingleResult();
+		        
+		    } catch (Exception e) {
+		        System.err.println("Error al contar tareas por estado: " + e.getMessage());
+		        return 0L; 
+		    }
 	}
 
 }

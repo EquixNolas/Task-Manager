@@ -37,9 +37,14 @@ public class TestTareaDao {
 		//buscarPorProyecto(1L);
 		//buscarPorProyectoYEstado(1L, "En Progreso");
 		//findAssginee(2L);
-		findOverdue(2L);
+		//findOverdue(2L);
+		//dueToday();
 	}
 	
+	//Busqueda caducidad hoy
+	public static void dueToday() {
+		tdao.findTasksDueToday().forEach(System.out::println);
+	}
 	//Busqueda por proyecto caducado
 	public static void findOverdue(Long pId) {
 		tdao.findOverdueTasks(pId).forEach(System.out::println);
