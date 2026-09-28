@@ -35,8 +35,14 @@ public class TestTareaDao {
 		
 		System.out.println("\n FindBy \n");
 		//buscarPorProyecto(1L);
-		buscarPorProyectoYEstado(1L, "En Progreso");
+		//buscarPorProyectoYEstado(1L, "En Progreso");
+		findAssginee(1L);
 	}
+	//Busqueda por asignado
+	public static void findAssginee(Long userId) {
+		tdao.findByAssignee(userId);
+	}
+	
 	//Busqueda por Proyecto y estado
 	public static void buscarPorProyectoYEstado(Long proyectoId, String status) {
 		tdao.findByProyectoAndStatus(proyectoId, status).forEach(System.out::println);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import entities.Estado;
 import entities.Tarea;
+import jakarta.persistence.TypedQuery;
 
 public class TareaDaoImpl extends AbstractDaoImpl implements ITareaDao{
 
@@ -107,14 +108,20 @@ public class TareaDaoImpl extends AbstractDaoImpl implements ITareaDao{
 	}
 
 	@Override
-	public List<Tarea> findByAssignee(Long usuarioId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Tarea> findByAssignee(Long userId) {
+		em.clear();
+		
+	    jpql = "SELECT t FROM Tarea t LEFT JOIN t.proyecto p LEFT JOIN p.members m WHERE m.userId = :userId";
+	    
+	    TypedQuery<Tarea> query = em.createQuery(jpql, Tarea.class);
+	    query.setParameter("userId", userId);
+	    
+	    return query.getResultList();
 	}
+
 
 	@Override
 	public List<Tarea> findOverdueTasks(Long proyectoId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
