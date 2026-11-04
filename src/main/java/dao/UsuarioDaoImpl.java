@@ -21,7 +21,8 @@ public class UsuarioDaoImpl extends AbstractDaoImpl implements IUsuarioDao {
 			tx.commit();
 			return 1;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.err.println("Error al insertar Usuario: " + e.getMessage());
+			if(tx != null && tx.isActive()) tx.rollback();
 			return 0;
 		}
 	}
@@ -40,7 +41,8 @@ public class UsuarioDaoImpl extends AbstractDaoImpl implements IUsuarioDao {
 				return 0;
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.err.println("Error al Actualizar Usuario: " + e.getMessage());
+			if(tx != null && tx.isActive()) tx.rollback();
 			return -1;
 		}
 	}
@@ -61,7 +63,8 @@ public class UsuarioDaoImpl extends AbstractDaoImpl implements IUsuarioDao {
 			}
 			
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.err.println("Error al borrar Usuario: " + e.getMessage());
+			if(tx != null && tx.isActive()) tx.rollback();
 			return -1;
 		}
 	}

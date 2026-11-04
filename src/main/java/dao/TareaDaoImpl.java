@@ -1,6 +1,5 @@
 package dao;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -22,8 +21,8 @@ public class TareaDaoImpl extends AbstractDaoImpl implements ITareaDao{
 			tx.commit();
 			return 1;
 		} catch (Exception e) {
-			System.err.println("Error critico en insertOne: "+e.getMessage());
-			e.printStackTrace();
+			System.err.println("Error al insertar Tarea: " + e.getMessage());
+			if(tx != null && tx.isActive()) tx.rollback();
 			return 0;
 		}
 	}
@@ -40,8 +39,8 @@ public class TareaDaoImpl extends AbstractDaoImpl implements ITareaDao{
 				return 0;
 			}
 		} catch (Exception e) {
-			System.err.println("Error critico en updateOne: " + e.getMessage());
-			e.getStackTrace();
+			System.err.println("Error al actualizar Tarea: " + e.getMessage());
+			if(tx != null && tx.isActive()) tx.rollback();
 			return -1;
 		}
 	}
@@ -59,8 +58,8 @@ public class TareaDaoImpl extends AbstractDaoImpl implements ITareaDao{
 				return 0;
 			}
 		} catch (Exception e) {
-			System.err.println("Error critico en deleteOne: " + e.getMessage());
-			e.getStackTrace();
+			System.err.println("Error al borrar Tarea: " + e.getMessage());
+			if(tx != null && tx.isActive()) tx.rollback();
 			return -1;
 		}
 	}

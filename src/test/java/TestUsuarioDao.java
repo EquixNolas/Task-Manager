@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
 
+import dao.AbstractDaoImpl;
 import dao.IUsuarioDao;
 import dao.UsuarioDaoImpl;
 import entities.Usuario;
@@ -19,6 +20,10 @@ public class TestUsuarioDao {
 		//leerTodos();
 		findByemail("mark.zuck@correo.com");
 		//System.out.println(udao.findById(4L));
+		
+		((AbstractDaoImpl)udao).close();
+		AbstractDaoImpl.shutdown();
+		
 	}
 	
 	public static void leerTodos() {

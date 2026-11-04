@@ -16,8 +16,8 @@ public class ProyectoDaoImpl extends AbstractDaoImpl implements IProyectoDao{
 			tx.commit();
 			return 1;
 		} catch (Exception e) {
-			System.err.println("Error critico en insertOne: " + e.getMessage());
-			e.printStackTrace();
+			System.err.println("Error al insertar Proyecto: " + e.getMessage());
+			if(tx != null && tx.isActive()) tx.rollback();
 			return 0;
 		}
 	}
@@ -35,8 +35,8 @@ public class ProyectoDaoImpl extends AbstractDaoImpl implements IProyectoDao{
 				return 0;
 			}
 		} catch (Exception e) {
-			System.err.println("Error Critico en updateOne:" + e.getMessage());
-			e.printStackTrace();
+			System.err.println("Error al Actualizar Proyecto: " + e.getMessage());
+			if(tx != null && tx.isActive()) tx.rollback();
 			return -1;
 		}
 	}
@@ -55,8 +55,8 @@ public class ProyectoDaoImpl extends AbstractDaoImpl implements IProyectoDao{
 				return 0;
 			}
 		} catch (Exception e) {
-			System.err.println("Error Critico en deleteOne: " + e.getMessage());
-			e.printStackTrace();
+			System.err.println("Error al borrar proyecto: " + e.getMessage());
+			if(tx != null && tx.isActive()) tx.rollback();
 			return -1;
 		}
 	}
