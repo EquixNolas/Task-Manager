@@ -33,7 +33,7 @@ public class TareaDaoImpl extends AbstractDaoImpl implements ITareaDao{
 		try {
 			if (findById(entity.getTareaId()) != null) {
 				tx.begin();
-					em.persist(entity);
+					em.merge(entity);
 				tx.commit();
 				return 1;
 			}else {
@@ -181,11 +181,17 @@ public class TareaDaoImpl extends AbstractDaoImpl implements ITareaDao{
 	}
 
 	@Override
-	public Long countTaskByStatus(Long proyectoId, String status) {
+	public Long countTaskByStatus(Long proyectoId, Estado estado) {
 		 try {
-		        jpql = "SELECT COUNT(t) FROM Tarea t WHERE t.estado = :estado";
+		        jpql = "SELECT COUNT(t) FROM Tarea t "
+		        		+ "WHERE t.proyecto.projectId = :proyectoId "
+		        		+ "AND t.estado = :estado";
+		        
 		        TypedQuery<Long> query = em.createQuery(jpql, Long.class);
-		        query.setParameter("estado", status);
+		        
+		        query.setParameter("proyectoId", proyectoId);
+		        query.setParameter("estado", estado);
+		        
 		        return query.getSingleResult();
 		        
 		    } catch (Exception e) {

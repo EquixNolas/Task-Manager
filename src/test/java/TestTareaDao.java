@@ -1,7 +1,4 @@
-package testr;
-
 import java.time.LocalDateTime;
-import java.util.List;
 
 import dao.IProyectoDao;
 import dao.ITareaDao;
@@ -34,11 +31,15 @@ public class TestTareaDao {
 		//eliminarTarea(15L);
 		
 		System.out.println("\n ___FindBy Methods___\n");
-		//buscarPorProyecto(1L);
+		buscarPorProyecto(1L);
 		//buscarPorProyectoYEstado(1L, "En Progreso");
 		//findAssginee(2L);
 		//findOverdue(2L);
 		//dueToday();
+		
+		//listarTodos();
+		Long total = tdao.countTaskByStatus(1L, Estado.Completada);
+		System.out.println("Tareas en Progreso: " + total);
 	}
 	
 	//Busqueda caducidad hoy
@@ -61,7 +62,9 @@ public class TestTareaDao {
 	//busqueda por proyecto asociado
 	public static void buscarPorProyecto(Long proyectoId) {
 		//System.out.println(tdao.findByProyecto(proyectoId));
-		tdao.findByProyecto(proyectoId).forEach(System.out::println);
+		//tdao.findByProyecto(proyectoId).forEach(System.out::println);
+		tdao.findByProyecto(proyectoId)
+			.forEach(item -> System.out.println("TareaID: "+ item.getTareaId() +" "+ item.getEstado()));
 	}
 	
 	//Crear Tarea Con el ID 15

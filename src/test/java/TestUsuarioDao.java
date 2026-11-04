@@ -1,5 +1,3 @@
-package testr;
-
 import java.time.LocalDateTime;
 
 import dao.IUsuarioDao;

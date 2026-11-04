@@ -27,7 +27,7 @@ public class ProyectoDaoImpl extends AbstractDaoImpl implements IProyectoDao{
 		try {
 			if(findById(entity.getProjectId()) != null) {
 				tx.begin();
-					em.persist(entity);
+					em.merge(entity);
 				tx.commit();
 				return 1;
 			}

@@ -3,6 +3,7 @@ package dao;
 
 import java.util.List;
 
+import entities.Estado;
 import entities.Tarea;
 
 public interface ITareaDao extends IGenericDao<Tarea, Long>{
@@ -16,5 +17,5 @@ public interface ITareaDao extends IGenericDao<Tarea, Long>{
 	List<Tarea> findTasksDueToday(); //Tareas que vencen hoy
 	
 	boolean assignUser(Long tareaId, Long usuarioId);
-	Long countTaskByStatus(Long proyectoId, String status);
+	Long countTaskByStatus(Long proyectoId, Estado estado);
 }
