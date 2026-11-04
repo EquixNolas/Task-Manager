@@ -7,7 +7,8 @@ import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
 public abstract class AbstractDaoImpl {
-	protected EntityManagerFactory emf;
+	protected static final EntityManagerFactory emf = 
+			Persistence.createEntityManagerFactory("TASKMANAGER");;
 	protected EntityManager em;
 	protected EntityTransaction tx;
 	protected Query query;
@@ -15,8 +16,17 @@ public abstract class AbstractDaoImpl {
 	
 	
 	public AbstractDaoImpl() {
-		emf = Persistence.createEntityManagerFactory("TASKMANAGER");
 		em = emf.createEntityManager();
 		tx = em.getTransaction();
+	}
+	
+	public void close() {
+		if (em != null && em.isOpen())
+			em.close();
+	}
+	
+	public static void shutdown() {
+		if (emf != null && emf.isOpen())
+			emf.close();
 	}
 }
